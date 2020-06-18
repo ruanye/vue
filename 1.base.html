@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+ 	<script src="./node_modules/vue/dist/vue.js"></script>
+	 <div id="app">
+		  <!-- {{}} 小胡子语法  Mustache -->
+	   {{a.b}} {{arr}}
+	 </div>
+	 <script>
+		 //vue  模板渲染顺序 
+		 //1. 如果有render 会优先查找render 
+		 //2. 如果没有render 会找template
+		 //3. 如果没有temlate 会找el元素进行渲染    
+		 // vm 视图模型 viewmodel 
+	  let vm = new Vue({
+			  // el:"#app",
+			 // template模式下 data 只能是函数 
+			 // data里面的属性会被definproperty 劫持  就会有getter和setter  但是后添加的属性是没有getter和setter的 
+			 data:{
+				 msg:'hello',
+				 a:{
+					 c:{}
+				 },
+				 arr:[1,2,3]
+				},
+			 //template:`<div>我是template</div>`,
+			//  render(h){// h->createElent  
+      //      return h('p','我是render')
+      // },
+		})
+		vm.$mount("#app") 
+		// vm.msg = 'world'
+		// dom 还没更新完成  
+		//  vm.$nextTick(()=>{
+    //   console.log(vm.$el)
+		//  })
+		// watch  queuewatch  会把watch放在一个队列里面依次执行  
+		//  vm.$watch('a',function(newval,oldval){
+		// 	  console.log(newval)
+		//  })
+		//  vm.a = 3 
+		//  vm.a = '4'
+		//  vm.a= '我是watch'  
+		//  console.log(vm.$options)
+		//  console.log(vm.$data,vm.$data==vm._data)
+		// 解决后添加的属性没法自动更新的问题   数据结构不建议嵌套太深   
+		//1. 直接改对象的值  
+    // vm.a={
+		//    ...vm.a,
+		// 	 b:100
+		// }
+		// 2 使用vm.$set Vue.set  来直接给后添加的属性设置getter和setter(手动调用了defineproperty这个方法)
+		vm.$set(vm.a,'b','我是set给的值')
+		vm.a.b = 100
+		// vue里面 数组不要使用索引和长度来进行改变数组值,会导致数据无法更新   
+	 
+		
+	 </script>
+</body>
+</html>

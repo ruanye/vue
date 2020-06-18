@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+ 	<script src="./node_modules/vue/dist/vue.js"></script>
+	 <div id="app">
+		    <!--只渲染一次 一次之后就是静态的html   -->
+		   <div v-once>{{msg}}</div>
+			 {{msg}}
+			 <!-- 永远不要相信用户输入 防止xss攻击 使用v-html的时候要确保内容是安全的 -->
+			 <input type="text"  v-model='html'>
+			 <div v-html='html'></div>
+			 <!-- template是vue提供的一个无意义的标签 不会编译出来  v-if 本质上还是操作dom-->
+			 <template v-if="true"> 
+			  <div></div>我是if</div>
+			  <div> 我是if2</div>
+			 </template>
+			 <div v-else>我是else</div>
+			 <!-- v-show  不能用在template上面 display:none/block-->
+			   <div v-show='true'> 我是show</div>
+		 </div>
+
+	 <script>
+	
+	  let vm = new Vue({
+			  // el:"#app",
+			 // template模式下 data 只能是函数 
+			 // data里面的属性会被definproperty 劫持  就会有getter和setter  但是后添加的属性是没有getter和setter的 
+			 data:{
+				html:'',
+				 msg:'hello',
+				 a:{
+					 c:{}
+				 },
+				 arr:[1,2,3]
+				},
+		
+		})
+		vm.$mount("#app") 
+	  vm.msg = 'world'
+	 
+		
+	 </script>
+</body>
+</html>

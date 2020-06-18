@@ -15,10 +15,13 @@ m model(js里面的数据)  v view 视图(页面)  vm   viewmodel 视图模型
 	- 如果有render 会优先查找render 
 	- 如果没有render 会找template
 	- 如果没有temlate 会找el元素进行渲染  
+5. 实例上的方法 
+ - $mount 	vm.$mount("#app")  ->el:'#app'
+ - $nextTick 确保获取更新后的dom元素
+ - $watch  监听数据变化  两个参数oldval newval   
+ - $options  用户输入所有参数 
+- $data _data  
+- vm.$set vm.$delete    
+6. 指令 v-once v-html  v-if v-else v-else-if  v-show  
 
-作业：周一上午11点交  线上能直接能看能用 npm run build 结束的页面 （自己录制演示的视频 ）     
-前端加后端(不能多于3个人一组) 公司员工信息统计系统(移动端可以看,pc端也可以看，禁止使用bootsrap) 
-登录 -> 注册  数据库   
-1.  添加员工 ->  姓名 性别(男，女)  部门  年龄  居住地 
-2.  员工健康状态  有无异常  体温 
-3.  员工列表的页面    
+   
