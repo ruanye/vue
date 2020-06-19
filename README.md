@@ -10,7 +10,7 @@ react+react-router+redux =>框架
 vue ->mvvm 框架 不完全遵循mvvm规则(ref 用户可以直接操作dom )
 m model(js里面的数据)  v view 视图(页面)  vm   viewmodel 视图模型    
 用户不需要操作dom     viewmodel  
-3. {{}} 小胡子语法 -> Mustache 
+3. {{}} 小胡子语法 -> Mustache(发音：ˈmʌstæʃ')
 4. vue  模板渲染顺序 
 	- 如果有render 会优先查找render 
 	- 如果没有render 会找template
@@ -18,10 +18,10 @@ m model(js里面的数据)  v view 视图(页面)  vm   viewmodel 视图模型
 5. 实例上的方法 
  - $mount 	vm.$mount("#app")  ->el:'#app'
  - $nextTick 确保获取更新后的dom元素
- - $watch  监听数据变化  两个参数oldval newval   
+ - $watch  监听数据变化  两个参数 newval  oldval  
  - $options  用户输入所有参数 
 - $data _data  
-- vm.$set vm.$delete    
-6. 指令 v-once v-html  v-if v-else v-else-if  v-show  
-
+- vm.$set vm.$delete   后添加的属性无法被劫持  需要使用$set   
+6. 指令 v-once v-html  v-if v-else v-else-if  v-show   v-for(数组、对象、数字 不要和v-if连用 key尽量不要使用索引)
+7. 计算属性computed和watch的区别  
    

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script src="./node_modules/vue/dist/vue.js"></script>
+  <div id="app">
+		
+		全选 
+		
+		<input type="checkbox"  v-model="checkAll"/>
+		 选择框
+		 
+     <input type="checkbox" v-for="item in checks" v-model='item.checked'/>
+		 <div> 深度watch{{msg.a}}</div>
+   
+	</div>
+	<script>
+		let vm = new Vue({
+			el:'#app',
+			data(){
+				return{
+					msg:{
+						a:''
+					},
+					xxx:"",
+					checks:[{checked:true},{checked:true},{checked:true}]
+				}
+			},
+			  computed:{
+           //只取值写成函数   
+					 b:function(){
+						 return this.msg+"world"
+					 },
+					
+           checkAll:{
+						 //get 设置值 
+             get:function(){
+							   //有一个没选中就是没全选  
+								 return this.checks.every(item=>item.checked==true)
+						 },
+						 //设置值 v-model 的时候才会用到set  设置的值会传给参数val
+						 set(val){
+							 this.checks.forEach(item => {
+								 item.checked = val
+							 });
+						 }}
+			  },
+				watch:{
+					//  msg:function(val,oldval){
+          //    console.log(val,oldval)
+					//  }
+					msg:{
+						handler:'h',
+						// handler(val,oldval){
+						// 	console.log(val,oldval,'立即执行一次')
+						// },
+				   	 deep:true,//深度监听 
+						 immediate:true  //立即执行,定义完watch会立即执行一次  
+						  
+					},
+           xxx:[
+              'some',
+							function handler(){
+
+							}
+					 ]
+
+				},
+				methods:{
+					h(val,oldval){
+						console.log('我是watch的handler')
+					}
+				}
+		})
+	vm.msg.a ='hello'
+	// computed 和watch比   只要是值不变化 就不会执行  有缓存   
+	</script>
+</body>
+</html>

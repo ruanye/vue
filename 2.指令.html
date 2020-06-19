@@ -22,6 +22,20 @@
 			 <div v-else>我是else</div>
 			 <!-- v-show  不能用在template上面 display:none/block-->
 			   <div v-show='true'> 我是show</div>
+				 <div v-color="'blue'">自定义</div>
+
+		    <p v-pin="200">Stick me 200px from the top of the page</p>
+				 <!-- v-for 可以循环 数组（数组） 数字 对象  尽量不要使用索引作为key key的主要作用是做domdiff  v-for和v-if不要一个标签上面连用  v-if 写里面  v-for >v-if   -->
+				  <div v-for='(item,index) in arr' :key="index" >
+						 <div v-if='index==2'>
+             {{item}}
+						 </div>
+					</div>
+				
+
+					
+					  
+					  
 		 </div>
 
 	 <script>
@@ -40,9 +54,22 @@
 				},
 		
 		})
+Vue.directive('color',{
+		 bind(el,binding){
+         console.log(el)
+				 el.style.color =binding.value 
+		 }
+	 })
+
+Vue.directive('pin', {
+  bind: function (el, binding, vnode) {
+    el.style.position = 'fixed'
+    el.style.top = binding.value + 'px'
+  }
+})
 		vm.$mount("#app") 
 	  vm.msg = 'world'
-	 
+
 		
 	 </script>
 </body>
