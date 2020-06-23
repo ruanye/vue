@@ -23,5 +23,11 @@ m model(js里面的数据)  v view 视图(页面)  vm   viewmodel 视图模型
 - $data _data  
 - vm.$set vm.$delete   后添加的属性无法被劫持  需要使用$set   
 6. 指令 v-once v-html  v-if v-else v-else-if  v-show   v-for(数组、对象、数字 不要和v-if连用 key尽量不要使用索引)
-7. 计算属性computed和watch的区别  
+7. 计算属性computed和watch的区别 
+
+*  指令和过滤器里面this是 window 
+
+8. 过滤器  filter  全局 局部  Vue.filter(名字,function(){})  局部的在组件里面定义  
+filters  作用 不改变原数据的基础上对数据进行格式化(1592878371058=>2020-6-23  100=>100元/$  16.1333->16.13 )   方法/计算属性可以代替过滤器 
+9.自定义指令 dircetive(指令)  操作dom   Vue.directive   局部directives 
    

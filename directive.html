@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+ 	<script src="./node_modules/vue/dist/vue.js"></script>
+	 <div id="app">
+		  <!-- {{}} 小胡子语法  Mustache -->
+			<!-- |管道符    -->
+	    {{m|format}}<br>
+		  <input type="text" v-autofocus>
+			<!-- 多加一层引号表示你传递的字符串不是变量   -->
+			<div v-color="red">我是谁</div>
+			<div v-color="'blue'">我在哪</div>
+	 </div>
+	 <script>
+		//  过滤器   脏水 -> 沙子过滤掉 ->加糖   
+	// let directives = {
+	
+	// }
+	// for(let key in  filters ){
+  //    Vue.directive(key,filters[key])
+	// }
+	// 指令有生命周期  bind  第一次绑定   inserted 插入dom的时候  update 更新的时componentUpdated  unbind 解绑事件    
+ Vue.directive('autofocus',{
+	  bind(el){
+			  Vue.nextTick(()=>{
+					 el.focus()
+				})
+		}
+	  // inserted(el){
+		// 	el.focus()
+		// } 
+
+ })
+ // functions 表示 bind和update 生命周期合在一起  
+  Vue.directive('color',function(el,binding,vnode){
+       el.style.color =  binding['value']
+	})
+		 
+		 //vue  模板渲染顺序 
+		 //1. 如果有render 会优先查找render 
+		 //2. 如果没有render 会找template
+		 //3. 如果没有temlate 会找el元素进行渲染    
+		 // vm 视图模型 viewmodel 
+	  let vm = new Vue({
+			 data:{
+				 msg:'hello',
+				 m:100,
+				 n:200,
+				 red:'red'
+				},
+				filters:{
+					 format:function(){
+            
+					 }
+				}
+		
+		})
+		vm.$mount("#app") 
+
+	 
+		
+	 </script>
+</body>
+</html>
