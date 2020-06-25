@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+ 	<script src="./node_modules/vue/dist/vue.js"></script>
+	 <div id="app">
+		 <div v-clickout='blur'>
+		  <input type="text" @focus = 'showit'>
+		   <div v-show="show">显示我</div>
+	  </div>
+	</div>
+	 <script>
+	Vue.directive('clickout',{
+		bind(el,binding,vnode,oldvnode){
+		    	 el.handleclick =function(e){
+						  //不包含e.target证明点的是外面 
+              if(!el.contains(e.target)){
+                 console.log(binding)
+								 let fn = binding['expression'] //拿到方法的名字   this.blur 
+								 console.log(vnode.context) // vnode.context = vm(this)
+								 vnode.context[fn]() //this.blur()
+							}
+					}
+          document.addEventListener('click',el.handleclick) 
+		},
+		inserted(el){
+			console.log('dom插入')
+		},
+     update(el){
+      console.log('更新')
+		},
+    componentUpdated(){
+			 console.log('组件更新')
+		},
+		unbind(el){
+      document.removeEventListener('click',el.handleclick)
+		}
+	})
+
+	  let vm = new Vue({
+	       data(){
+					 return {
+						 show:false,
+						 a:"hello"
+					 }
+				 },
+				 methods:{
+					 showit(){
+						 this.show = true
+					 },
+					 blur(){
+						 this.show= false
+					 }
+				 }
+		})
+		vm.$mount("#app") 
+   vm.a = 'ok'
+	 
+		
+	 </script>
+</body>
+</html>

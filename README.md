@@ -24,10 +24,25 @@ m model(js里面的数据)  v view 视图(页面)  vm   viewmodel 视图模型
 - vm.$set vm.$delete   后添加的属性无法被劫持  需要使用$set   
 6. 指令 v-once v-html  v-if v-else v-else-if  v-show   v-for(数组、对象、数字 不要和v-if连用 key尽量不要使用索引)
 7. 计算属性computed和watch的区别 
-
-*  指令和过滤器里面this是 window 
+  *  指令和过滤器里面this是 window 
 
 8. 过滤器  filter  全局 局部  Vue.filter(名字,function(){})  局部的在组件里面定义  
 filters  作用 不改变原数据的基础上对数据进行格式化(1592878371058=>2020-6-23  100=>100元/$  16.1333->16.13 )   方法/计算属性可以代替过滤器 
-9.自定义指令 dircetive(指令)  操作dom   Vue.directive   局部directives 
-   
+9.自定义指令 dircetive(指令)  操作dom   Vue.directive   局部directives
+
+vue3.0 api 地址 
+ https://vue-composition-api-rfc.netlify.app/zh/#%E6%A6%82%E8%BF%B0   
+
+vue3.0搭建 兼容2.0  
+
+https://github.com/vuejs/vue-next
+
+vue-cli-plugin-vue-next
+
+$ npm install -g @vue/cli
+$ vue --version
+$ vue create xxx
+$ vue add vue-next
+
+使用vite 搭建vue3.0    
+ npm init vite-app  项目名  type-moudle  
